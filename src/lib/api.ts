@@ -19,3 +19,50 @@ export async function posts(type: String) {
     throw err;
   }
 }
+
+export async function post(id: String) {
+  try {
+    let res = await client.get(`/posts/post/${id}`);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function login(email: string, password: string) {
+  try {
+    let res = await client.post("/login", { email, password });
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function register(
+  username: string,
+  email: string,
+  password: string
+) {
+  try {
+    let res = await client.post("/register", { username, email, password });
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function verifyIdentity(auth_token: string) {
+  try {
+    let res = await client.get("/identity", {
+      headers: {
+        Authorization: auth_token,
+      },
+    });
+
+    client.defaults.headers.common.Authorization = auth_token;
+
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
