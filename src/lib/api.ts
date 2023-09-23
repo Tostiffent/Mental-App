@@ -29,6 +29,24 @@ export async function post(id: String) {
   }
 }
 
+export async function forumPosts() {
+  try {
+    let res = await client.get(`/forum/`);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function forumPost(id: String) {
+  try {
+    let res = await client.get(`/forum/${id}`);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export async function login(email: string, password: string) {
   try {
     let res = await client.post("/login", { email, password });

@@ -23,7 +23,7 @@ export default function LoginForm() {
 
   useEffect(() => {
     if (authStatus == "success") {
-      router.push("/app");
+      router.push("/forum");
     }
   }, [authStatus]);
 
@@ -72,7 +72,7 @@ export default function LoginForm() {
         });
       window.localStorage.setItem("auth_token", auth_token);
       dispatch(fetchIdentity()); // this triggers a call to /api/identity to fetch info
-      router.push("/app");
+      router.push("/forum");
     } catch (err) {
       setLoading(false);
       setErrorMsg({ text: "Invalid credentials! Try again", enabled: true });

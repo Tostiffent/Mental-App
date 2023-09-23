@@ -29,7 +29,7 @@ export default function Page(props: { params: { id: String } }) {
             </span>
           </div>
           <div className={styles.content}>
-            <span>{post?.content}</span>
+            <p>{post?.content}</p>
           </div>
         </div>
       ) : null}

@@ -23,7 +23,7 @@ export default function RegisterForm() {
 
   useEffect(() => {
     if (authStatus == "success") {
-      router.push("/app");
+      router.push("/forum");
     }
   }, [authStatus]);
   const router = useRouter();
@@ -87,7 +87,7 @@ export default function RegisterForm() {
         });
       window.localStorage.setItem("auth_token", auth_token);
       dispatch(fetchIdentity()); // this triggers a call to /api/identity to fetch info
-      router.push("/customise");
+      router.push("/forum");
     } catch (err) {
       setLoading(false);
       setErrorMsg({ text: "Something went wrong! Try again.", enabled: true });
