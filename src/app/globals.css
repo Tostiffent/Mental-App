@@ -3,17 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --backgound-color: #dddcd2;
-  --foreground-color: #000000;
+	--text-color: black;
+	--foreground-primary: #D9C2A3;
+	--foreground-secondary: #CAA58A;
+	--foreground-tertiary: #E78337;
+	--background-primary: #A8CFCA;
+	--background-secondary: #87BEC1;
+
+	--button-primary: 1, 1, 1;
+	--button-secondary: 0, 0, 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
+* {
+	color: var(--text-color);
+}
+
+html {
+	height: 100%;
 }
 
 body {
-  color: rgb(var(--foreground-color));
-  background: rgb(var(--backgound-color));
-  overflow: hidden;
+	height: 100%;
 }
