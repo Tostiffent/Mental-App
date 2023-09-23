@@ -1,48 +1,10 @@
 import styles from "./resources.module.css";
 import Image from "next/image";
 
-export default function Posts({ selection }: { selection: String }) {
-  const posts = [
-    {
-      title: "Welcome To Mental App",
-      thumbnail:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155033222950948974/image.png",
-      author: "girl (real)",
-      desc: "Welcome to this app we have made for this hackathon",
-    },
-    {
-      title: "hello world",
-      thumbnail:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155021249534242876/image.png?width=1025&height=462",
-      author: "girl (real)",
-      desc: "Hello to this new stupid af world",
-    },
-    {
-      title: "hello world",
-      thumbnail:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155021249534242876/image.png?width=1025&height=462",
-      author: "girl (real)",
-      desc: "Hello to this new stupid af world",
-    },
-    {
-      title: "hello world",
-      thumbnail:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155021249534242876/image.png?width=1025&height=462",
-      author: "girl (real)",
-      desc: "Hello to this new stupid af world",
-    },
-    {
-      title: "hello world",
-      thumbnail:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155021249534242876/image.png?width=1025&height=462",
-      author: "girl (real)",
-      desc: "Hello to this new stupid af world",
-    },
-  ];
-
+export default function Posts({ posts }: { posts: any }) {
   return (
     <div className={styles.postArea}>
-      {posts.map((post) => (
+      {posts.map((post: any) => (
         <div key={post.title} className={styles.postCard}>
           <div className={styles.thumbnail}>
             <Image

@@ -1,25 +1,33 @@
 "use client";
 import Image from "next/image";
 import styles from "./resources.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Posts from "./posts";
+import { getPosts } from "@/lib/postSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/reduxHooks";
 
 export default function Page() {
   const [selection, setSelection] = useState<String>("");
+  const posts = useAppSelector((state) => state.postSlice.posts);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts(selection));
+  }, [selection]);
 
   const topics = [
     {
-      name: "Online Harizzment",
+      name: "harizzment",
       image:
         "https://media.discordapp.net/attachments/1154724255859216435/1155015696296710164/768px-Heart_corazC3B3n.png?width=473&height=473",
     },
     {
-      name: "Social Pressure",
+      name: "pressure",
       image:
         "https://media.discordapp.net/attachments/1154724255859216435/1155015696296710164/768px-Heart_corazC3B3n.png?width=473&height=473",
     },
     {
-      name: "Overload",
+      name: "overload",
       image:
         "https://media.discordapp.net/attachments/1154724255859216435/1155015696296710164/768px-Heart_corazC3B3n.png?width=473&height=473",
     },
@@ -31,7 +39,7 @@ export default function Page() {
         <div className={styles.titleContainer}>
           <span>
             {selection
-              ? `Viewing Posts for ${selection}`
+              ? `Viewingg Posts for ${selection}`
               : "Select Your Condition"}
           </span>
         </div>
@@ -54,7 +62,7 @@ export default function Page() {
           ))}
         </div>
       </div>
-      <Posts selection={selection} />
+      {posts[0] ? <Posts posts={posts} /> : null}
     </div>
   );
 }
