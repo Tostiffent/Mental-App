@@ -1,10 +1,36 @@
-export default function RadioOptions({ options }: any) {
+import { useEffect, useRef } from "react";
+
+export default function RadioOptions({
+	setOption,
+	options,
+}: {
+	setOption: (idx: 0 | 1 | 2 | 3) => void;
+	options: string[];
+}) {
+	const optionContainerRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		const optionContainer = optionContainerRef.current;
+
+		if (optionContainer) {
+			const radios = optionContainer.getElementsByTagName("input");
+
+			for (let i = 0; i < radios.length; i++) {
+				const radio = radios[i];
+				radio.addEventListener("change", function () {
+					// has been checked
+					setOption(i as any);
+				});
+			}
+		}
+	}, [setOption]);
+
 	return (
-		<div className="mt-10">
+		<div className="mt-10" ref={optionContainerRef}>
 			{options.map((option: any) => (
 				<label className="container" key={option}>
 					{option}
-					<input type="radio" checked={true} name="radio" />
+					<input type="radio" name="quizOption" />
 					<span className="checkmark"></span>
 				</label>
 			))}

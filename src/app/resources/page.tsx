@@ -49,7 +49,7 @@ export default function Page() {
         <div className={styles.titleContainer}>
           <span>
             {selection
-              ? `Viewingg Posts for ${selection}`
+              ? `Viewing Posts for ${selection}`
               : "Select Your Condition"}
           </span>
         </div>

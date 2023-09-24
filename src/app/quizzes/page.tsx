@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -48,13 +48,13 @@ export default function Quizzes() {
 						className="quizCard relative w-full h-64 flex flex-col rounded-xl p-5 drop-shadow-lg top-0 hover:-top-3 transition-[top] duration-200"
 						key={quiz.slug}
 					>
-						<Link href={`/quizzes/${quiz.slug}`} key={quiz.slug}>
+						<Link href={`/quizzes/${quiz.quiz_slug}`} key={quiz.slug}>
 							<div className="imageContainer w-full h-full rounded-xl absolute top-0 left-0 z-[-1] overflow-clip">
-								<Image src={quiz.image ?? "/landing_bg.jpg"} alt={quiz.title} fill={true} />
+								<Image src={quiz.img ?? "/landing_bg.jpg"} alt={quiz.title} fill={true} />
 							</div>
+							<h3 className="text-3xl text-foreground-tertiary font-bold" >{quiz.title}</h3>
+							<p className="mt-4 text-white">{quiz.desc}</p>
 						</Link>
-						<h3 className="text-3xl">{quiz.title}</h3>
-						<p>{quiz.desc}</p>
 					</div>
 				))}
 			</div>
