@@ -1,7 +1,6 @@
 import { Post } from "@/lib/postSlice";
 import styles from "./resources.module.css";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Posts({ posts }: { posts: Post[] }) {
