@@ -17,19 +17,22 @@ export default function Page() {
 
   const topics = [
     {
-      name: "harizzment",
+      name: "Mental Health",
+      tag: "MH",
       image:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155015696296710164/768px-Heart_corazC3B3n.png?width=473&height=473",
+        "https://media.discordapp.net/attachments/1154724255859216435/1155302041363689604/3485379-200.png",
     },
     {
-      name: "pressure",
+      name: "Mental illnesses",
+      tag: "MI",
       image:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155015696296710164/768px-Heart_corazC3B3n.png?width=473&height=473",
+        "https://media.discordapp.net/attachments/1154724255859216435/1155302460970250311/Mental_Illness_Icon_2.png?width=368&height=473",
     },
     {
-      name: "overload",
+      name: "Digital age problems",
+      tag: "MID",
       image:
-        "https://media.discordapp.net/attachments/1154724255859216435/1155015696296710164/768px-Heart_corazC3B3n.png?width=473&height=473",
+        "https://media.discordapp.net/attachments/1154724255859216435/1155302687554949151/191.png?width=473&height=473",
     },
   ];
 
@@ -47,7 +50,7 @@ export default function Page() {
           {topics.map((topic) => (
             <div key={topic.name} className={styles.condition}>
               <div
-                onClick={() => setSelection(topic.name)}
+                onClick={() => setSelection(topic.tag)}
                 style={{ width: "50px", height: "50px", position: "relative" }}
               >
                 <Image
@@ -57,7 +60,9 @@ export default function Page() {
                   style={{ borderRadius: "50%" }}
                 />
               </div>
-              <span style={{ marginTop: "10px" }}>{topic.name}</span>
+              <span style={{ marginTop: "10px", fontWeight: "600" }}>
+                {topic.name}
+              </span>
             </div>
           ))}
         </div>

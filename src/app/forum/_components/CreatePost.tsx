@@ -1,50 +1,30 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-import Loading from "../../../../components/Loading/Loading";
-import api from "@/lib/api";
-import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
-import { joinGuild, selectGuilds } from "@/lib/slices/chatSlice";
-import { useSocket } from "../../../../components/SocketContext";
-import TextInputArea from "./TextInputArea";
-import useAutosizeTextArea from "@/hooks/useAutoSizeTextArea";
-
-const isValidFileUploaded = (file: File) => {
-  const validExtensions = ["png", "jpeg", "jpg", "quicktime", "webp", "gif"];
-  const fileExtension = file.type.split("/")[1];
-  return validExtensions.includes(fileExtension);
-};
+import Loading from "@/components/Loading";
+import styles from "./ForumArea.module.scss";
+import { useAppSelector } from "@/lib/reduxHooks";
+import { postSend } from "@/lib/api";
 
 export default function CreatePost(props: any) {
-  const socket = useSocket();
-  const [guildIcon, setGuildIcon] = useState<any>(null);
-  const [guildName, setGuildName] = useState<string>("");
-  const [text, setText] = useState<string>("");
-  const [loading, setLoadiing] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const guilds = useAppSelector(selectGuilds());
-  const inputRef: any = useRef();
+  const [loading, setLoading] = useState(false);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const auth = useAppSelector((state) => state.auth);
 
-  useAutosizeTextArea(inputRef?.current, text);
-
-  async function createGuild() {
-    if (!guildName) return;
-    if (!guildIcon) return; //todo
-    setLoadiing(true);
-    const data = await api.createGuild(guildIcon, guildName);
-    if (!data) return;
-    socket.emit("join_room", { room: data.guild_id });
-    dispatch(joinGuild(data));
-    props?.setOpenGuildModal(false);
+  async function onCreatePost() {
+    setLoading(true);
+    postSend(content, auth?.data?.user_id, title);
+    setLoading(false);
+    props?.setOpenModal(false);
+    setTitle("");
+    setContent("");
   }
 
   return (
     <>
-      <div
-        className="guildModal"
-        onClick={() => props?.setOpenGuildModal(false)}
-      >
+      <div className="guildModal" onClick={() => props?.setOpenModal(false)}>
         <div
           className="guildContainer"
           style={{ position: "relative" }}
@@ -57,20 +37,18 @@ export default function CreatePost(props: any) {
           <input
             type="text"
             placeholder="Enter a cool title"
-            value={guildName}
-            onChange={(e) => setGuildName(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="modalInput"
           />
-          <TextInputArea
-            setImageToUpload={setGuildIcon}
-            onMessageSend={() => console.log("hi")}
-            messageContent={text}
-            setMessageContent={setText}
-            placeholder="what"
-            inputRef={inputRef}
+          <textarea
+            className={styles.textArea}
+            placeholder="Speak your mind"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           />
-          <button className="modalSubmit" onClick={() => createGuild()}>
-            {loading ? <Loading /> : "Create Server"}
+          <button className="modalSubmit" onClick={() => onCreatePost()}>
+            {loading ? <Loading /> : "Create Post"}
           </button>
         </div>
       </div>

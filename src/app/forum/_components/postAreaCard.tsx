@@ -61,16 +61,6 @@ export default function PostAreaCard({ post }: { post: any }) {
         </div>
       </div>
       <div className={styles.postContentNoLimit}>{post?.content}</div>
-      <div className={styles.buttonContainer}>
-        <ThumbUpOutlinedIcon
-          fontSize="inherit"
-          style={{ marginRight: "20px", color: "#ff8383", cursor: "pointer" }}
-        />
-        <ThumbDownOutlinedIcon
-          fontSize="inherit"
-          style={{ marginRight: "20px", color: "#c6c6ff", cursor: "pointer" }}
-        />
-      </div>
     </div>
   );
 }

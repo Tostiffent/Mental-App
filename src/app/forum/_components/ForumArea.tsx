@@ -3,12 +3,16 @@ import styles from "./ForumArea.module.scss";
 import PostCard from "./PostCard";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import CreatePost from "./CreatePost";
+import { useState } from "react";
 
 export default function ForumArea({ posts }: { posts: any }) {
   const router = useRouter();
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className={styles.forumContainer}>
+      {openModal ? <CreatePost setOpenModal={setOpenModal} /> : null}
       <div className={styles.topText}>
         <div
           style={{
@@ -35,13 +39,18 @@ export default function ForumArea({ posts }: { posts: any }) {
           type="text"
           placeholder="search posts"
         />
-        <button className={styles.createButton}>Create Post</button>
+        <button
+          onClick={() => setOpenModal(true)}
+          className={styles.createButton}
+        >
+          Create Post
+        </button>
       </div>
       {posts
         ? posts?.map((post: any) => (
             <div
               key={post?.post_id}
-              onClick={() => router.push(`/app/forum/${post?.post_id}`)}
+              onClick={() => router.push(`/forum/${post?.post_id}`)}
             >
               <PostCard post={post} />
             </div>

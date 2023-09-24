@@ -3,7 +3,6 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import styles from "./ForumArea.module.scss";
-import { Message } from "@/lib/types";
 
 function getTime(date_now: Date) {
   // get total seconds between the times
@@ -36,7 +35,7 @@ export default function Comment({
   reply,
 }: {
   comment: any;
-  reply: Message | null;
+  reply: any | null;
 }) {
   return (
     <div>
@@ -92,23 +91,6 @@ export default function Comment({
           </div>
           <div className="message_content">{comment?.content}</div>
         </div>
-      </div>
-      <div
-        className={styles.buttonContainer}
-        style={{ marginLeft: "41px", fontSize: "22px" }}
-      >
-        <ThumbUpOutlinedIcon
-          fontSize="inherit"
-          style={{ marginRight: "20px", color: "#ff8383", cursor: "pointer" }}
-        />
-        <ThumbDownOutlinedIcon
-          fontSize="inherit"
-          style={{ marginRight: "20px", color: "#c6c6ff", cursor: "pointer" }}
-        />
-        <ReplyOutlinedIcon
-          fontSize="inherit"
-          style={{ marginRight: "20px", cursor: "pointer" }}
-        />
       </div>
       <style jsx>{`
         .messageContainer {

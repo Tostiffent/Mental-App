@@ -41,7 +41,7 @@ export default function PostCard({ post }: { post: any }) {
             <span style={{ fontWeight: "700", color: "#e7e7e7" }}>
               {post?.author?.username}
             </span>
-            <span style={{ fontWeight: "450", color: "#a7a7a7" }}>
+            <span style={{ fontWeight: "450", color: "#00000" }}>
               {getTime(post?.createdAt)}
             </span>
           </div>
@@ -65,24 +65,7 @@ export default function PostCard({ post }: { post: any }) {
           alignItems: "center",
           overflow: "hidden",
         }}
-      >
-        <span
-          style={{ fontWeight: "700", color: "#a7a7a7", marginRight: "5px" }}
-        >
-          KevinJoseph:{" "}
-        </span>
-        <span>OMGGG MY BABEEEE</span>
-      </div>
-      <div className={styles.buttonContainer}>
-        <ThumbUpOutlinedIcon
-          fontSize="inherit"
-          style={{ marginRight: "20px", color: "#ff8383", cursor: "pointer" }}
-        />
-        <ThumbDownOutlinedIcon
-          fontSize="inherit"
-          style={{ marginRight: "20px", color: "#c6c6ff", cursor: "pointer" }}
-        />
-      </div>
+      ></div>
     </div>
   );
 }

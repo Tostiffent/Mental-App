@@ -56,6 +56,36 @@ export async function login(email: string, password: string) {
   }
 }
 
+export async function commentSend(
+  id: string,
+  comment: string,
+  user_id: string
+) {
+  try {
+    let res = await client.post("/forum/comment", { id, comment, user_id });
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function postSend(
+  content: string,
+  user_id: string,
+  title: string
+) {
+  try {
+    let res = await client.post("/forum/create", {
+      content,
+      user_id,
+      title,
+    });
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export async function register(
   username: string,
   email: string,
