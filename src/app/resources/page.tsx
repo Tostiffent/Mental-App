@@ -7,7 +7,7 @@ import { getPosts } from "@/lib/postSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/reduxHooks";
 
 export default function Page() {
-  const [selection, setSelection] = useState<String>("");
+  const [selection, setSelection] = useState<String>("MH");
   const posts = useAppSelector((state) => state.postSlice.posts);
   const dispatch = useAppDispatch();
 
@@ -37,7 +37,14 @@ export default function Page() {
   ];
 
   return (
-    <div style={{ position: "absolute", width: "100%", height: "100%" }}>
+    <div
+      style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "var(--background-primary)",
+      }}
+    >
       <div className={styles.container}>
         <div className={styles.titleContainer}>
           <span>
@@ -48,9 +55,12 @@ export default function Page() {
         </div>
         <div className={styles.conditions}>
           {topics.map((topic) => (
-            <div key={topic.name} className={styles.condition}>
+            <div
+              onClick={() => setSelection(topic.tag)}
+              key={topic.name}
+              className={styles.condition}
+            >
               <div
-                onClick={() => setSelection(topic.tag)}
                 style={{ width: "50px", height: "50px", position: "relative" }}
               >
                 <Image
